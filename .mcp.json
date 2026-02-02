@@ -1,0 +1,20 @@
+{
+  "mcpServers": {
+    "chrome-devtools": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["chrome-devtools-mcp"],
+      "description": "Chrome DevTools MCP Server - Control completo de Chrome para agentes de IA"
+    },
+    "github": {
+      "type": "http",
+      "url": "https://api.githubcopilot.com/mcp/",
+      "description": "GitHub Copilot MCP Server - Integración con GitHub"
+    },
+    "sentry": {
+      "type": "http",
+      "url": "https://mcp.sentry.dev/mcp",
+      "description": "Sentry MCP Server - Monitoreo de errores"
+    }
+  }
+}
