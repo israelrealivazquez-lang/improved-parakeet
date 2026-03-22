@@ -1,0 +1,20 @@
+﻿# NEXUS OMNI-CHIPS CHECKLIST (DATA RECOVERY STATUS)
+
+[ ] CONV-01: Thesis Content Automation (Data Ingestion) - DONE
+[ ] CONV-02: Continua (System Persistence) - DONE
+[ ] CONV-03: Crafting Scientific Article (APA 7 Peer Review) - DONE
+[ ] CONV-04: Antigravity Extension Audit (Browser Bridge) - DONE
+[ ] CONV-05: Thesis Translation & Synthesis (NotebookLM context) - DONE
+[ ] CONV-06: Unified Cloud & Browser Fix (GCP e2-micro / Oracle) - DONE
+[ ] CONV-07: System Cleanup Planning (5GB C: Stabilization) - DONE
+[ ] CONV-08: Phase 17 Omni-Sequence (Current HUD Active) - IN PROGRESS
+
+## INJECTED KNOWLEDGE SOURCES
+
+[x] ChatGPT Export (95MB Conversations)
+[x] Claude Export (61MB Conversations)
+[x] Gemini Activity Reconstructed
+[x] Perplexity Scavenging (Ghost Harvest)
+[x] NotebookLM Synthesis (Jules)
+[x] Thesis Master Segments (1,716 pages skeleton)
+[x] Current Turn Context (March 22, 2026 - 12:41:37)
