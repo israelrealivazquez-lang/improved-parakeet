@@ -7,15 +7,29 @@ import time
 # Solves Unicode issues and ensures service survival
 
 def run_pm2_command(args):
-    """Executes a PM2 command and handles encoding."""
+    """Executes a PM2 command and handles encoding silently."""
     cmd = ["pm2"] + args
+    
+    # Suppression for Windows
+    startupinfo = None
+    creationflags = 0
+    if os.name == 'nt':
+        startupinfo = subprocess.STARTUPINFO()
+        startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
+        startupinfo.wShowWindow = 0 # SW_HIDE
+        creationflags = subprocess.CREATE_NO_WINDOW
+
     try:
-        # Use shell=True on Windows for pm2 commands
-        process = subprocess.run(cmd, shell=True, capture_output=True, text=True, encoding='utf-8')
+        process = subprocess.run(
+            cmd, shell=True, capture_output=True, text=True, encoding='utf-8',
+            startupinfo=startupinfo, creationflags=creationflags
+        )
         return process.stdout
     except Exception as e:
-        # Fallback to local encoding if utf-8 fails
-        process = subprocess.run(cmd, shell=True, capture_output=True, text=True)
+        process = subprocess.run(
+            cmd, shell=True, capture_output=True, text=True,
+            startupinfo=startupinfo, creationflags=creationflags
+        )
         return process.stdout
 
 def setup_pm2_services():
