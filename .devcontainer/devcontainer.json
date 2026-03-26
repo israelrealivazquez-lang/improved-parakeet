@@ -1,0 +1,15 @@
+{
+    "name": "Nexus Omega Offloader",
+    "image": "mcr.microsoft.com/devcontainers/python:3.11",
+    "postCreateCommand": "pip install python-docx playwright && playwright install chromium",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python"
+            ]
+        }
+    },
+    "forwardPorts": [
+        8000
+    ]
+}
