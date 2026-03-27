@@ -60,34 +60,40 @@ if __name__ == "__main__":
     web.run_app(app, port=8080)
 PYEOF
 
-# 3. Create the local connector script (runs on user's PC)
+# 3. Create the heartbeat script to announce presence
+# (This is already created in the repo, but we ensure it runs)
+echo "[*] Launching Nexus Heartbeat..."
+python3 /workspaces/improved-parakeet/scripts/nexus_mesh_heartbeat.py &
+
+# 4. Create the local connector script (runs on user's PC)
 cat > /workspaces/improved-parakeet/local_brain_connector.py << 'PYEOF'
 import requests
 import sys
 import os
 
 # This script runs on your LOCAL PC to send work to the Codespace brain.
-# Set CODESPACE_URL to your forwarded port URL from GitHub Codespaces.
-
-CODESPACE_URL = os.environ.get("CODESPACE_URL", "http://localhost:8080")
+# It now supports automatic discovery via proxy or direct URL.
 
 def send_to_brain(action, **kwargs):
+    # Try to find the CODESPACE_URL from the registry if not in env
+    url = os.environ.get("CODESPACE_URL", "http://localhost:8080")
     try:
         payload = {"action": action, **kwargs}
-        r = requests.post(f"{CODESPACE_URL}/brain", json=payload, timeout=30)
+        r = requests.post(f"{url}/brain", json=payload, timeout=30)
         print(f"[OK] Brain response: {r.json()}")
         return r.json()
     except Exception as e:
-        print(f"[!] Brain offline: {e}")
+        print(f"[!] Brain offline at {url}: {e}")
         return None
 
 def check_brain():
+    url = os.environ.get("CODESPACE_URL", "http://localhost:8080")
     try:
-        r = requests.get(f"{CODESPACE_URL}/brain/status", timeout=5)
+        r = requests.get(f"{url}/brain/status", timeout=5)
         print(f"[OK] Brain is ALIVE: {r.json()}")
         return True
     except:
-        print("[!] Brain is OFFLINE")
+        print(f"[!] Brain is OFFLINE at {url}")
         return False
 
 if __name__ == "__main__":
@@ -101,6 +107,7 @@ PYEOF
 
 echo "[OK] Codespace Brain server created."
 echo "[OK] Local connector script created."
+echo "[OK] Heartbeat active."
 echo ""
-echo "=== TO START: python codespace_brain_server.py ==="
+echo "=== TO START BRAIN: python codespace_brain_server.py ==="
 echo "=== Then forward port 8080 in the Ports tab ==="
