@@ -27,9 +27,9 @@ During the 1980s and 1990s, tanatology continued to expand and diversify, with t
 
 - 1960: El término "tanatología" fue acuñado por el psiquiatra suizo, Kübler-Ross, para referirse al estudio de la muerte y el morir.
 
-- 1969: Kübler-Ross publicó el libro "Sobre la muerte y el morir", que se convirtió en un clásico de la tanatología. En el libro, presentó su modelo de las cinco etapas del duelo: negación, ira, negociación, depresión y aceptación.
+- 1969: Kübler-Ross publicó el libro "Sobre la muerte y el morir" [Cite: Sobre la muerte y el morir Elisabeth Kubler-Ross], que se convirtió en un clásico de la tanatología. En el libro, presentó su modelo de las cinco etapas del duelo: negación, ira, negociación, depresión y aceptación.
 
-- 1973: La Asociación de Tanatología de América fue fundada por Herman Feifel, un psiquiatra y pionero en el campo de la tanatología.
+- 1973: La Asociación de Tanatología de América fue fundada por Herman Feifel [Cite: Herman Feifel The Meaning of Death], un psiquiatra y pionero en el campo de la tanatología.
 
 - 1980: La tanatología se convirtió en una disciplina reconocida por la Asociación Médica Estadounidense.
 
