@@ -1,0 +1,9 @@
+﻿{
+  "mcpServers": {
+    "archivos_holograficos": { "command": "npx", "args": ["-y", "@modelcontextprotocol/server-filesystem", "/workspaces"] },
+    "busqueda_brave": { "command": "npx", "args": ["-y", "@modelcontextprotocol/server-brave-search"] },
+    "navegador_puppeteer": { "command": "npx", "args": ["-y", "@modelcontextprotocol/server-puppeteer"] },
+    "base_datos_sqlite": { "command": "npx", "args": ["-y", "@modelcontextprotocol/server-sqlite", "/workspaces/antigravity.db"] },
+    "google_drive": { "command": "npx", "args": ["-y", "@modelcontextprotocol/server-gdrive"] }
+  }
+}

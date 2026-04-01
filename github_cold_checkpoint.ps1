@@ -2,8 +2,8 @@
 # This script monitors the thesis file and pushes to GitHub every 500 words.
 
 param (
-    [string]$thesisPath = "D:\nexus_work\MASTER_THESIS_HUB_V3.md",
-    [int]$wordThreshold = 500
+    [string]$thesisPath = "C:\Users\Lenovo\improved-parakeet\MASTER_THESIS_HUB_V4.md",
+    [int]$wordThreshold = 100
 )
 
 function Get-WordCount($path) {
@@ -37,8 +37,8 @@ if ($diff -ge $wordThreshold) {
     Set-Location "c:\Users\Lenovo\improved-parakeet"
     git add $thesisPath 2>$null
     $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm"
-    git commit -m "🔱 NEXUS COLD BACKUP: Thesis Milestone (+ $diff words) - $timestamp" 2>$null
-    git push origin main 2>&1
+    git commit -m "🔱 NEXUS COLD BACKUP: Thesis Milestone (V4.x) - $timestamp" 1>$null 2>$null
+    git push origin main 1>$null 2>$null
     
     Write-Host "[OK] Backup successful: Milestone reached." -ForegroundColor Green
 }
