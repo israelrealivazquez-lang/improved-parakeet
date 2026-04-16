@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXUS - Centro de Comando Cloud</title>
+    <style>
+        :root {
+            --neon-cyan: #00f2ff;
+            --dark-bg: #0a0a12;
+            --glass: rgba(255, 255, 255, 0.05);
+        }
+        body {
+            background: var(--dark-bg);
+            color: white;
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        .dashboard {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--neon-cyan);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);
+        }
+        h1 { color: var(--neon-cyan); letter-spacing: 5px; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px; }
+        .btn {
+            padding: 15px 25px;
+            border: 1px solid var(--neon-cyan);
+            border-radius: 10px;
+            color: var(--neon-cyan);
+            text-decoration: none;
+            transition: all 0.3s;
+            background: transparent;
+        }
+        .btn:hover {
+            background: var(--neon-cyan);
+            color: black;
+            box-shadow: 0 0 15px var(--neon-cyan);
+        }
+        .stats { margin-top: 20px; font-size: 0.8em; opacity: 0.7; }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <h1>NEXUS CORE</h1>
+        <p>Terminal de Control del Doctorado (4GB Thin Client Mode)</p>
+        
+        <div class="grid">
+            <a href="https://console.cloud.google.com/home/dashboard?project=nexus-doctoral-thesis" target="_blank" class="btn">CENTRO DE PROCESAMIENTO (GCP)</a>
+            <a href="https://github.com/israelrealivazquez-lang/improved-parakeet/actions" target="_blank" class="btn">PIPELINE DE TESIS (GITHUB)</a>
+            <a href="https://colab.research.google.com/" target="_blank" class="btn">MÁQUINA 16GB RAM (COLAB)</a>
+            <a href="https://console.cloud.google.com/cloudshell/editor" target="_blank" class="btn">TERMINAL DE EMERGENCIA</a>
+        </div>
+
+        <div class="stats">
+            <p>Estado del Túnel: 🟢 ACTIVO | Encriptación: AES-256</p>
+            <p>PC Local: Monitoreo Activo | Nube: Procesando Logs</p>
+        </div>
+    </div>
+</body>
+</html>

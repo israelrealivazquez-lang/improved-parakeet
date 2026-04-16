@@ -1,0 +1,49 @@
+{
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/bower_components": true,
+        "**/*.code-search": true,
+        "**/Data_Exports": true,
+        "**/__legacy_archive": true,
+        "**/logs": true,
+        "**/.git": true,
+        "**/dist": true,
+        "**/build": true,
+        "**/nexus_backup": true,
+        "**/RESPALDO_USB_TESIS_20260327": true,
+        "**/scripts/temp_2811": true,
+        "**/*.json": true,
+        "**/*.csv": true,
+        "**/*.zip": true
+    },
+    "files.watcherExclude": {
+        "**/node_modules/*/**": true,
+        "**/Data_Exports/*/**": true,
+        "**/__legacy_archive/*/**": true,
+        "**/logs/*/**": true,
+        "**/.git/*/**": true,
+        "**/nexus_backup/*/**": true,
+        "**/RESPALDO_USB_TESIS_20260327/*/**": true,
+        "**/scripts/temp_2811/*/**": true
+    },
+    "files.exclude": {
+        "**/.git": true,
+        "**/.DS_Store": true,
+        "**/__legacy_archive": true,
+        "**/Data_Exports": true,
+        "**/nexus_backup": true,
+        "**/RESPALDO_USB_TESIS_20260327": true,
+        "**/scripts/temp_2811": true,
+        "**/*.json": true,
+        "**/*.csv": true
+    },
+    "python.analysis.exclude": [
+        "**/Data_Exports",
+        "**/__legacy_archive",
+        "**/nexus_backup",
+        "**/RESPALDO_USB_TESIS_20260327",
+        "**/scripts/temp_2811"
+    ],
+    "git.autorefresh": false,
+    "git.autofetch": false
+}
