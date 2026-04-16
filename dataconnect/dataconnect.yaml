@@ -1,0 +1,7 @@
+﻿specVersion: v1alpha
+serviceId: nexus-doctoral-thesis
+location: us-central1
+schema:
+  source: "./schema"
+connectorDirs:
+  - "./connector"

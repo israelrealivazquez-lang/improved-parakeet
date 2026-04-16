@@ -1,0 +1,6 @@
+type SessionState @table {
+    id: UUID! @default(expr: "uuid_generate_v4()")
+    title: String!
+    content: String!
+    updatedAt: Timestamp! @default(expr: "request.time")
+}
