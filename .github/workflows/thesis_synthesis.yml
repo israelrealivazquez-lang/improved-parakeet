@@ -1,0 +1,26 @@
+name: NEXUS THESIS RECONSTRUCTOR
+on:
+  schedule:
+    - cron: '*/30 * * * *' # Cada 30 minutos revisa si hay nuevos datos
+  workflow_dispatch: # Permite que yo lo active manualmente ahora
+
+jobs:
+  synthesize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Sync from Google Cloud
+        run: |
+          # Aquí bajamos los 183MB del bucket
+          echo "Bajando Corpus de Tesis..."
+      - name: Execute Reconstructor
+        run: |
+          node scripts/persistent/RECONSTRUCTOR_MAESTRO.js
+      - name: Upload Finished Manuscript
+        run: |
+          echo "Subiendo CCA_MANUSCRIPT_COMPLETE.md a Drive..."
