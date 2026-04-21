@@ -1,0 +1,43 @@
+name: Cloud Backup Pack
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "41 8 * * *"
+
+jobs:
+  pack:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Build backup pack
+        run: |
+          mkdir -p cloud-backup
+          {
+            echo "# Cloud Backup Pack"
+            echo
+            echo "- Timestamp: $(date -Iseconds)"
+            echo "- Commit: $(git rev-parse HEAD)"
+            echo
+            echo "## Files"
+            find . -maxdepth 3 -type f \
+              ! -path "./.git/*" \
+              ! -path "./node_modules/*" \
+              | sort
+          } > cloud-backup/manifest.md
+
+          cp README.md cloud-backup/README.md 2>/dev/null || true
+          cp NEXUS_PERSISTENT_CONTEXT.md cloud-backup/NEXUS_PERSISTENT_CONTEXT.md 2>/dev/null || true
+          cp MASTER_THESIS_HUB_V3.md cloud-backup/MASTER_THESIS_HUB_V3.md 2>/dev/null || true
+          cp MASTER_MANIFEST_TEXT.txt cloud-backup/MASTER_MANIFEST_TEXT.txt 2>/dev/null || true
+          cp .devcontainer/devcontainer.json cloud-backup/devcontainer.json 2>/dev/null || true
+
+      - name: Upload backup pack
+        uses: actions/upload-artifact@v4
+        with:
+          name: nexus-backup-pack
+          path: cloud-backup/
+          if-no-files-found: error

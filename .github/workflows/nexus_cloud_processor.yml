@@ -1,29 +1,66 @@
 name: NEXUS Cloud Processor
+
 on:
+  workflow_dispatch:
   push:
     paths:
-      - 'data_exports/**'
-      - 'scripts/**'
-  workflow_dispatch:
+      - "data_exports/**"
+      - "scripts/**"
+      - ".github/workflows/nexus_cloud_processor.yml"
+  schedule:
+    - cron: "17 */6 * * *"
 
 jobs:
-  reconstruct_thesis:
+  process:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
-      
+
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
-          
+          python-version: "3.11"
+
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install psutil requests
-          
-      - name: Process Large Logs
+          pip install psutil requests rich
+
+      - name: Process available cloud workload
         run: |
-          python scripts/persistent/NEXUS_GRID_ORCHESTRATOR.py --urls "https://example.com"
-          # Aquí irá el comando de concatenación pesada
+          mkdir -p cloud-output
+          python - <<'PY'
+from pathlib import Path
+import json
+import platform
+import datetime
+
+root = Path.cwd()
+candidates = [
+    root / "scripts" / "persistent" / "NEXUS_GRID_ORCHESTRATOR.py",
+    root / "scripts" / "persistent" / "RECONSTRUCTOR_MAESTRO.js",
+]
+report = {
+    "timestamp": datetime.datetime.utcnow().isoformat() + "Z",
+    "platform": platform.platform(),
+    "python": platform.python_version(),
+    "existing_candidates": [str(p) for p in candidates if p.exists()],
+    "repo_file_count": len([p for p in root.rglob("*") if p.is_file() and ".git" not in p.parts]),
+}
+Path("cloud-output/cloud_processor_report.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
+print(json.dumps(report, indent=2))
+          PY
+          if [ -f scripts/persistent/NEXUS_GRID_ORCHESTRATOR.py ]; then
+            python scripts/persistent/NEXUS_GRID_ORCHESTRATOR.py --urls "https://example.com" || true
+          else
+            echo "NEXUS_GRID_ORCHESTRATOR.py not present; generated report only."
+          fi
+
+      - name: Upload cloud output
+        uses: actions/upload-artifact@v4
+        with:
+          name: nexus-cloud-output
+          path: cloud-output/
+          if-no-files-found: warn
