@@ -1,21 +1,56 @@
 {
-    "name": "Nexus Omega Offloader",
-    "image": "mcr.microsoft.com/devcontainers/python:3.11",
-    "features": {
-        "ghcr.io/devcontainers/features/sshd:1": {
-            "version": "latest"
-        }
+  "name": "Nexus Omega Offloader",
+  "image": "mcr.microsoft.com/devcontainers/python:3.11",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "22"
     },
-    "postCreateCommand": "pip install python-docx playwright && playwright install chromium && bash setup_codespace_brain.sh &",
-    "customizations": {
-        "vscode": {
-            "extensions": [
-                "ms-python.python"
-            ]
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+  "hostRequirements": {
+    "cpus": 2,
+    "memory": "4gb",
+    "storage": "16gb"
+  },
+  "waitFor": "postCreateCommand",
+  "postCreateCommand": "bash .devcontainer/post-create.sh",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "telemetry.telemetryLevel": "off",
+        "files.watcherExclude": {
+          "**/.git/objects/**": true,
+          "**/node_modules/**": true,
+          "**/.venv/**": true,
+          "**/.cache/**": true
+        },
+        "search.exclude": {
+          "**/node_modules": true,
+          "**/.venv": true,
+          "**/.cache": true
         }
+      },
+      "extensions": [
+        "ms-python.python",
+        "GitHub.vscode-pull-request-github",
+        "esbenp.prettier-vscode"
+      ]
+    }
+  },
+  "forwardPorts": [
+    3000,
+    5173,
+    8000,
+    8080
+  ],
+  "portsAttributes": {
+    "5173": {
+      "label": "Vite web-app",
+      "onAutoForward": "notify"
     },
-    "forwardPorts": [
-        8000,
-        8080
-    ]
+    "8000": {
+      "label": "Python service",
+      "onAutoForward": "silent"
+    }
+  }
 }
